@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Reducir logs de Selenium -->
+    <logger name="org.openqa.selenium" level="WARN"/>
+    <logger name="org.seleniumhq.selenium" level="WARN"/>
+    <logger name="io.github.bonigarcia" level="WARN"/>
+    <logger name="org.apache.http" level="WARN"/>
+    
+    <!-- Logs de Cucumber más limpios -->
+    <logger name="io.cucumber" level="INFO"/>
+    
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
