@@ -1,13 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import utils.TestData;
 
 public class RegisterPage extends BasePage {
     
-    // URL
-    private static final String REGISTER_URL = "https://www.wordmate.es/public/register.html";
-    
-    // Localizadores basados en el HTML proporcionado
     private final By usernameField = By.id("reg-username");
     private final By emailField = By.id("reg-email");
     private final By nameField = By.id("reg-name");
@@ -18,9 +15,8 @@ public class RegisterPage extends BasePage {
     private final By errorMessage = By.id("register-error");
     private final By loginLink = By.xpath("//a[contains(@href, 'login.html')]");
     
-    // Navegación
     public void navigateToRegisterPage() {
-        navigateTo(REGISTER_URL);
+        navigateTo(TestData.URLs.REGISTER_URL);
     }
     
     // Acciones de la página
@@ -53,7 +49,7 @@ public class RegisterPage extends BasePage {
     }
     
     public void clickLoginLink() {
-        clickElement(loginLink);
+        navigateTo(TestData.URLs.LOGIN_URL);
     }
     
     // Método principal para completar el registro
@@ -88,7 +84,7 @@ public class RegisterPage extends BasePage {
     }
     
     public boolean isOnRegisterPage() {
-        return getCurrentUrl().contains("register.html");
+        return getCurrentUrl().contains("/public/register.html");
     }
     
     public boolean isRegisterButtonEnabled() {

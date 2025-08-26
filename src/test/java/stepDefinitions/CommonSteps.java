@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import pages.LoginPage;
 import pages.RegisterPage;
 import pages.ProfilePage;
+import utils.TestData;
 import static org.testng.Assert.*;
 
 public class CommonSteps {
@@ -84,8 +85,8 @@ public class CommonSteps {
         
         String currentUrl = getCurrentUrl();
         assertTrue(currentUrl.contains("index.html") || 
-                  currentUrl.equals("https://www.wordmate.es/") ||
-                  currentUrl.equals("https://www.wordmate.es"), 
+                  currentUrl.equals(TestData.URLs.BASE_URL + "/") ||
+                  currentUrl.equals(TestData.URLs.BASE_URL), 
                   "Should be redirected to home page. Current URL: " + currentUrl);
     }
     

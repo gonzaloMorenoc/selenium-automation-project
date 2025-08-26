@@ -27,7 +27,7 @@ public class ProfileSteps {
         // Crear un usuario de prueba
         testUser = TestData.createValidTestUser();
         
-        // Registrar el usuario
+        // Registrar el usuario usando URL centralizada
         registerPage.navigateToRegisterPage();
         registerPage.submitRegistrationForm(
             testUser.getUsername(),
@@ -45,7 +45,6 @@ public class ProfileSteps {
             Thread.currentThread().interrupt();
         }
         
-        // Hacer login
         loginPage.navigateToLoginPage();
         loginPage.performLogin(testUser.getUsername(), testUser.getPassword());
         
@@ -60,8 +59,6 @@ public class ProfileSteps {
     @Given("I am not logged in")
     public void i_am_not_logged_in() {
         // Asegurarse de que no hay sesión activa
-        // En una aplicación real, podríamos limpiar cookies/localStorage
-        // Para este test, asumimos que empezamos sin sesión
     }
     
     @When("I navigate to the profile page")
@@ -77,16 +74,12 @@ public class ProfileSteps {
     
     @When("I click the register button in the login prompt modal")
     public void i_click_the_register_button_in_the_login_prompt_modal() {
-        // Navegar directamente a la URL correcta en lugar de hacer click en el link
-        // porque los links del HTML van a URLs relativas sin /public/
-        registerPage.navigateToRegisterPage();
+        profilePage.clickRegisterFromModal();
     }
     
     @When("I click the login button in the login prompt modal")
     public void i_click_the_login_button_in_the_login_prompt_modal() {
-        // Navegar directamente a la URL correcta en lugar de hacer click en el link
-        // porque los links del HTML van a URLs relativas sin /public/
-        loginPage.navigateToLoginPage();
+        profilePage.clickLoginFromModal();
     }
     
     @When("I click the logout button")
@@ -202,8 +195,6 @@ public class ProfileSteps {
             Thread.currentThread().interrupt();
         }
         
-        // En una implementación real, habría un elemento específico para errores
-        // Por ahora, verificamos que seguimos en la página de perfil
         assertTrue(profilePage.isOnProfilePage(), 
                   "Should show error and remain on profile page");
     }

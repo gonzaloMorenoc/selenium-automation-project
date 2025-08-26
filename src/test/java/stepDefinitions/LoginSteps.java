@@ -32,7 +32,7 @@ public class LoginSteps {
         // Crear un usuario de prueba y registrarlo primero
         testUser = TestData.createValidTestUser();
         
-        // Ir a la página de registro
+        // Ir a la página de registro usando URL centralizada
         registerPage.navigateToRegisterPage();
         
         // Registrar el usuario
@@ -52,7 +52,7 @@ public class LoginSteps {
             Thread.currentThread().interrupt();
         }
         
-        // Volver a la página de login
+        // Volver a la página de login usando URL centralizada
         loginPage.navigateToLoginPage();
     }
     
@@ -106,15 +106,14 @@ public class LoginSteps {
     
     @When("I click on the register link")
     public void i_click_on_the_register_link() {
-        // Navegar directamente a la URL correcta en lugar de hacer click en el link
-        // porque los links del HTML van a URLs relativas sin /public/
-        registerPage.navigateToRegisterPage();
+        // Usar el método corregido que navega usando URL centralizada
+        loginPage.clickRegisterLink();
     }
     
     @When("I click on the home link")
     public void i_click_on_the_home_link() {
-        // Navegar directamente a la home page usando el driver
-        loginPage.navigateTo("https://www.wordmate.es/index.html");
+        // Usar el método corregido que navega usando URL centralizada
+        loginPage.clickHomeLink();
     }
     
     @Then("I should be logged in successfully")
@@ -158,7 +157,6 @@ public class LoginSteps {
     
     @Then("the login form should show validation errors")
     public void the_login_form_should_show_validation_errors() {
-        // En HTML5, los campos requeridos vacíos impiden el envío del formulario
         // Verificamos que seguimos en la página de login
         assertTrue(loginPage.isOnLoginPage(), 
                   "Should remain on login page due to validation");

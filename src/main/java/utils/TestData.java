@@ -6,6 +6,17 @@ public class TestData {
     
     private static final Random random = new Random();
     
+    // URLs de la aplicación
+    public static class URLs {
+        public static final String BASE_URL = "https://www.wordmate.es";
+        public static final String REGISTER_URL = BASE_URL + "/public/register.html";
+        public static final String LOGIN_URL = BASE_URL + "/public/login.html";
+        public static final String PROFILE_URL = BASE_URL + "/public/profile.html";
+        public static final String HOME_URL = BASE_URL + "/index.html";
+        public static final String GAME_SESSION_URL = BASE_URL + "/public/game-session.html";
+        public static final String WORD_LIST_URL = BASE_URL + "/public/word-list.html";
+    }
+    
     // Datos de usuario válidos
     public static class ValidUser {
         public static final String USERNAME = "testuser" + System.currentTimeMillis();
@@ -23,15 +34,6 @@ public class TestData {
         public static final String WEAK_PASSWORD = "password";
         public static final String EMPTY_USERNAME = "";
         public static final String EMPTY_PASSWORD = "";
-    }
-    
-    // URLs de la aplicación
-    public static class URLs {
-        public static final String BASE_URL = "https://www.wordmate.es";
-        public static final String REGISTER_URL = BASE_URL + "/public/register.html";
-        public static final String LOGIN_URL = BASE_URL + "/public/login.html";
-        public static final String PROFILE_URL = BASE_URL + "/public/profile.html";
-        public static final String HOME_URL = BASE_URL + "/index.html";
     }
     
     // Mensajes esperados

@@ -46,7 +46,7 @@ public class RegisterSteps {
             email,
             userData.get("firstName"),
             userData.get("lastName"),
-            "", // sin foto URL
+            "",
             password
         );
     }
@@ -98,7 +98,7 @@ public class RegisterSteps {
             userData.get("firstName"),
             userData.get("lastName"),
             "",
-            userData.get("password") // contraseña débil
+            userData.get("password") 
         );
     }
     
@@ -115,9 +115,7 @@ public class RegisterSteps {
     
     @When("I click on the login link")
     public void i_click_on_the_login_link() {
-        // Navegar directamente a la URL correcta en lugar de hacer click en el link
-        // porque los links del HTML van a URLs relativas sin /public/
-        loginPage.navigateToLoginPage();
+        registerPage.clickLoginLink();
     }
     
     @Then("I should be redirected away from the registration page")
@@ -149,7 +147,6 @@ public class RegisterSteps {
     
     @Then("the register button should be disabled or form should show validation errors")
     public void the_register_button_should_be_disabled_or_form_should_show_validation_errors() {
-        // En HTML5, los campos requeridos vacíos impiden el envío del formulario
         // Verificamos que seguimos en la página de registro
         assertTrue(registerPage.isOnRegisterPage(), 
                   "Should remain on registration page due to validation");
