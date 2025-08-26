@@ -1,13 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import utils.TestData;
 
 public class LoginPage extends BasePage {
     
-    // URL
-    private static final String LOGIN_URL = "https://www.wordmate.es/public/login.html";
-    
-    // Localizadores basados en el HTML proporcionado
     private final By usernameField = By.id("login-username");
     private final By passwordField = By.id("login-password");
     private final By loginButton = By.xpath("//button[@type='submit']");
@@ -15,9 +12,9 @@ public class LoginPage extends BasePage {
     private final By registerLink = By.xpath("//a[contains(@href, 'register.html')]");
     private final By homeLink = By.xpath("//a[contains(@href, '../index.html')]");
     
-    // Navegación
+    // Navegación usando URLs centralizadas
     public void navigateToLoginPage() {
-        navigateTo(LOGIN_URL);
+        navigateTo(TestData.URLs.LOGIN_URL);
     }
     
     // Acciones de la página
@@ -34,11 +31,13 @@ public class LoginPage extends BasePage {
     }
     
     public void clickRegisterLink() {
-        clickElement(registerLink);
+        // Navegar directamente usando URL centralizada en lugar de hacer click
+        navigateTo(TestData.URLs.REGISTER_URL);
     }
     
     public void clickHomeLink() {
-        clickElement(homeLink);
+        // Navegar directamente usando URL centralizada en lugar de hacer click
+        navigateTo(TestData.URLs.HOME_URL);
     }
     
     // Método principal para hacer login
@@ -61,7 +60,7 @@ public class LoginPage extends BasePage {
     }
     
     public boolean isOnLoginPage() {
-        return getCurrentUrl().contains("login.html");
+        return getCurrentUrl().contains("/public/login.html");
     }
     
     public boolean isLoginButtonEnabled() {
@@ -82,6 +81,6 @@ public class LoginPage extends BasePage {
         }
         
         // Si no estamos en login.html después del login, asumimos que fue exitoso
-        return !getCurrentUrl().contains("login.html");
+        return !getCurrentUrl().contains("/public/login.html");
     }
 }

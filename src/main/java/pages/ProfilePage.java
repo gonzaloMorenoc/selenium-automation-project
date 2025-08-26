@@ -1,13 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import utils.TestData;
 
 public class ProfilePage extends BasePage {
     
-    // URL
-    private static final String PROFILE_URL = "https://www.wordmate.es/public/profile.html";
-    
-    // Localizadores basados en el HTML proporcionado
     private final By profileContainer = By.id("profile-container");
     private final By profileName = By.id("profile-name");
     private final By profileUsername = By.id("profile-username");
@@ -26,14 +23,23 @@ public class ProfilePage extends BasePage {
     private final By registerFromModalButton = By.xpath("//a[@href='register.html' and contains(@class, 'btn-primary')]");
     private final By loginFromModalButton = By.xpath("//a[@href='login.html' and contains(@class, 'btn-success')]");
     
-    // Navegación
+    // Navegación usando URLs centralizadas
     public void navigateToProfilePage() {
-        navigateTo(PROFILE_URL);
+        navigateTo(TestData.URLs.PROFILE_URL);
+    }
+    
+    // Navegación desde modals usando URLs centralizadas
+    public void clickRegisterFromModal() {
+        navigateTo(TestData.URLs.REGISTER_URL);
+    }
+    
+    public void clickLoginFromModal() {
+        navigateTo(TestData.URLs.LOGIN_URL);
     }
     
     // Verificaciones básicas
     public boolean isOnProfilePage() {
-        return getCurrentUrl().contains("profile.html");
+        return getCurrentUrl().contains("/public/profile.html");
     }
     
     public boolean isProfileContainerDisplayed() {
@@ -83,15 +89,6 @@ public class ProfilePage extends BasePage {
         clickConfirmDeleteAccount();
     }
     
-    // Acciones desde modal de no logueado
-    public void clickRegisterFromModal() {
-        clickElement(registerFromModalButton);
-    }
-    
-    public void clickLoginFromModal() {
-        clickElement(loginFromModalButton);
-    }
-    
     // Obtener información del perfil
     public String getProfileName() {
         if (isElementDisplayed(profileName)) {
@@ -121,6 +118,6 @@ public class ProfilePage extends BasePage {
         }
         
         // Si fuimos redirigidos fuera del perfil, asumimos que el borrado fue exitoso
-        return !getCurrentUrl().contains("profile.html") || isNotLoggedInModalDisplayed();
+        return !getCurrentUrl().contains("/public/profile.html") || isNotLoggedInModalDisplayed();
     }
 }
