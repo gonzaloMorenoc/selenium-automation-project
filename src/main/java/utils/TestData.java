@@ -15,6 +15,12 @@ public class TestData {
         public static final String HOME_URL = BASE_URL + "/index.html";
         public static final String GAME_SESSION_URL = BASE_URL + "/public/game-session.html";
         public static final String WORD_LIST_URL = BASE_URL + "/public/word-list.html";
+
+        public static void validateURL(String actualUrl, String expectedUrl) {
+        if (!actualUrl.contains("/public/") && expectedUrl.contains("/public/")) {
+            throw new AssertionError("URL redirect detected! Expected: " + expectedUrl + " but got: " + actualUrl);
+        }
+    }
     }
     
     // Datos de usuario válidos

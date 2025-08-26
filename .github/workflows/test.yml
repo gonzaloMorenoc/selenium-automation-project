@@ -24,7 +24,7 @@ jobs:
         distribution: 'temurin'
     
     - name: Cache Maven dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -48,18 +48,18 @@ jobs:
     
     - name: Upload Test Results
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: |
-          target/cucumber-reports/
-          target/allure-results/
-          target/site/allure-maven-plugin/
-        retention-days: 30
-    
+            target/cucumber-reports/
+            target/allure-results/
+            target/site/allure-maven-plugin/
+            retention-days: 30
+
     - name: Upload Screenshots
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4 
       with:
         name: screenshots
         path: target/screenshots/
