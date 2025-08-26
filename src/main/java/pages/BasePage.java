@@ -1,11 +1,14 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverManager;
+import utils.TestData;
+
 import java.time.Duration;
 
 public class BasePage {
@@ -19,7 +22,21 @@ public class BasePage {
     }
     
     public void navigateTo(String url) {
+        System.out.println("🌐 Navigating to: " + url);
         driver.get(url);
+        
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println("🔍 Current URL after navigation: " + currentUrl);
+        
+        TestData.URLs.validateURL(currentUrl, url);
+        
+        waitForPageLoad();
+    }
+
+    private void waitForPageLoad() {
+        wait.until(webDriver -> 
+            ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete")
+        );
     }
     
     protected void clickElement(By locator) {

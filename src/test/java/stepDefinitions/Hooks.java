@@ -6,6 +6,7 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utils.DriverManager;
+import utils.TestData;
 
 public class Hooks {
     
@@ -15,7 +16,11 @@ public class Hooks {
         String browserName = System.getProperty("browser", "chrome");
         DriverManager.setDriver(browserName);
         
-        System.out.println("Starting scenario: " + scenario.getName());
+        System.out.println("🚀 Starting scenario: " + scenario.getName());
+        System.out.println("🌐 Base URL configured: " + TestData.URLs.BASE_URL);
+        System.out.println("📝 Register URL: " + TestData.URLs.REGISTER_URL);
+        System.out.println("🔐 Login URL: " + TestData.URLs.LOGIN_URL);
+        System.out.println("👤 Profile URL: " + TestData.URLs.PROFILE_URL);
     }
     
     @After
